@@ -1,6 +1,6 @@
 // Definición de la clase Persona
 class Persona {
-    static id = 0;
+    static id = 1;
     constructor(nombre, apellidos, estadoCivil) {
       this.nombre = nombre;
       this.apellidos = apellidos;
@@ -17,7 +17,7 @@ class Persona {
   // Definición de la clase Empleado (clase hija de Persona)
   class Empleado extends Persona {
     constructor(nombre, apellidos, estadoCivil, añoIncorporacion, numDespacho) {
-      super(nombre, apellidos, identificacion, estadoCivil);
+      super(nombre, apellidos, estadoCivil);
       this.añoIncorporacion = añoIncorporacion;
       this.numDespacho = numDespacho;
     }
@@ -31,7 +31,7 @@ class Persona {
   // Definición de la clase Estudiante (clse hija de Persona)
   class Estudiante extends Persona {
     constructor(nombre, apellidos, estadoCivil, cursoMatriculado) {
-      super(nombre, apellidos, identificacion, estadoCivil);
+      super(nombre, apellidos, estadoCivil);
       this.cursoMatriculado = cursoMatriculado;
     }
   
@@ -44,7 +44,7 @@ class Persona {
   // Definición de la clase Profesor (Clase hija de Empleado)
   class Profesor extends Empleado {
     constructor(nombre, apellidos, estadoCivil, añoIncorporacion, numDespacho, departamento) {
-      super(nombre, apellidos, identificacion, estadoCivil, añoIncorporacion, numDespacho);
+      super(nombre, apellidos, estadoCivil, añoIncorporacion, numDespacho);
       this.departamento = departamento;
     }
   
@@ -57,13 +57,14 @@ class Persona {
   // Definición de la clase PersonalServicio (clase hija de Empleado)
   class PersonalServicio extends Empleado {
     constructor(nombre, apellidos, estadoCivil, añoIncorporacion, numDespacho, seccionAsignada) {
-      super(nombre, apellidos, identificacion, estadoCivil, añoIncorporacion, numDespacho);
+      super(nombre, apellidos, estadoCivil, añoIncorporacion, numDespacho);
       this.seccionAsignada = seccionAsignada;
     }
   
     // Método para cambiar de sección asignada
     cambiarSeccion(seccionNueva) {
       this.seccionAsignada = seccionNueva;
+      return seccionNueva;
     }
   }
   
@@ -80,7 +81,10 @@ class Persona {
   
     // Método para dar de baja a una persona
     darDeBaja(identificacion) {
-      this.personas = this.personas.filter(persona => persona.identificacion !== identificacion);
+      console.log("Identificación a dar de baja:", identificacion);
+      this.personas = this.personas.filter(persona => { 
+        console.log("Identificación de la persona en la lista:", persona.identificacion);
+        return persona.identificacion != identificacion});
     }
   
     // Método para imprimir la información las personas
@@ -103,25 +107,23 @@ class Persona {
         const nombre = prompt("Nombre:");
         const apellidos = prompt("Apellidos:");
         const estadoCivil = prompt("Estado civil:");
-        
+        const añoIncorporacion = prompt("Año de incorporación:");
         let persona;
   
         switch (tipoPersona.toLowerCase()) {
           case "estudiante":
             const cursoMatriculado = prompt("Curso matriculado:");
-            persona = new Estudiante(nombre, apellidos, cursoMatriculado, estadoCivil);
+            persona = new Estudiante(nombre, apellidos, estadoCivil, cursoMatriculado);
             break;
           case "profesor":
-            const añoIncorporacion = prompt("Año de incorporación:");
-            const numDespacho = prompt("Número de despacho:");
+            const numDespachoProf = prompt("Número de despacho:");
             const departamento = prompt("Departamento:");
-            persona = new Profesor(nombre, apellidos, estadoCivil, añoIncorporacion, numDespacho, departamento);
+            persona = new Profesor(nombre, apellidos, estadoCivil, añoIncorporacion, numDespachoProf, departamento);
             break;
           case "personal de servicio":
-             añoIncorporacion = prompt("Año de incorporación:");
-             numDespacho = prompt("Número de despacho:");
+            const numDespachoPersonal = prompt("Número de despacho:");
             const seccionAsignada = prompt("Sección asignada:");
-            persona = new PersonalServicio(nombre, apellidos, estadoCivil, añoIncorporacion, numDespacho, seccionAsignada);
+            persona = new PersonalServicio(nombre, apellidos, estadoCivil, añoIncorporacion, numDespachoPersonal, seccionAsignada);
             break;
           default:
             console.log("Tipo de persona no válido.");
