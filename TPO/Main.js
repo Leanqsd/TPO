@@ -1,7 +1,7 @@
 // Definición de la clase Persona
 class Persona {
     static id = 0;
-    constructor(nombre, apellidos, identificacion, estadoCivil) {
+    constructor(nombre, apellidos, estadoCivil) {
       this.nombre = nombre;
       this.apellidos = apellidos;
       this.identificacion = Persona.id++;
@@ -16,7 +16,7 @@ class Persona {
   
   // Definición de la clase Empleado (clase hija de Persona)
   class Empleado extends Persona {
-    constructor(nombre, apellidos, identificacion, estadoCivil, añoIncorporacion, numDespacho) {
+    constructor(nombre, apellidos, estadoCivil, añoIncorporacion, numDespacho) {
       super(nombre, apellidos, identificacion, estadoCivil);
       this.añoIncorporacion = añoIncorporacion;
       this.numDespacho = numDespacho;
@@ -30,7 +30,7 @@ class Persona {
   
   // Definición de la clase Estudiante (clse hija de Persona)
   class Estudiante extends Persona {
-    constructor(nombre, apellidos, identificacion, estadoCivil, cursoMatriculado) {
+    constructor(nombre, apellidos, estadoCivil, cursoMatriculado) {
       super(nombre, apellidos, identificacion, estadoCivil);
       this.cursoMatriculado = cursoMatriculado;
     }
@@ -43,7 +43,7 @@ class Persona {
   
   // Definición de la clase Profesor (Clase hija de Empleado)
   class Profesor extends Empleado {
-    constructor(nombre, apellidos, identificacion, estadoCivil, añoIncorporacion, numDespacho, departamento) {
+    constructor(nombre, apellidos, estadoCivil, añoIncorporacion, numDespacho, departamento) {
       super(nombre, apellidos, identificacion, estadoCivil, añoIncorporacion, numDespacho);
       this.departamento = departamento;
     }
@@ -56,7 +56,7 @@ class Persona {
   
   // Definición de la clase PersonalServicio (clase hija de Empleado)
   class PersonalServicio extends Empleado {
-    constructor(nombre, apellidos, identificacion, estadoCivil, añoIncorporacion, numDespacho, seccionAsignada) {
+    constructor(nombre, apellidos, estadoCivil, añoIncorporacion, numDespacho, seccionAsignada) {
       super(nombre, apellidos, identificacion, estadoCivil, añoIncorporacion, numDespacho);
       this.seccionAsignada = seccionAsignada;
     }
